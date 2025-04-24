@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tool | Jhiro Ramir Portfolio</title>
+  <meta name="description" content="Portfolio website of Jhiro Ramir Tool – passionate computer science student and developer.">
+  <meta name="keywords" content="Jhiro Ramir, Web Developer, Portfolio, Computer Science, Student">
+  <meta name="author" content="Jhiro Ramir Tool">
+
+  <!-- Bootstrap & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+
+  <style>
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #0a0a0a;
+      color: white;
+      transition: all 0.3s ease;
+    }
+
+    body.light-mode {
+      background-color: #f4f4f4;
+      color: #333;
+    }
+
+    body.light-mode .landing {
+      background: linear-gradient(to right, #f39c12, #f1c40f);
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #333;
+      z-index: 1000;
+      padding: 10px 0;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    header .navbar-brand {
+      color: #fff;
+      font-size: 1.8em;
+      padding-left: 20px;
+      letter-spacing: 2px;
+    }
+
+    header .nav-link {
+      color: #fff !important;
+      margin-right: 20px;
+    }
+
+    header .dark-mode-btn {
+      background-color: #ff6347;
+      border: none;
+      border-radius: 5px;
+      padding: 8px 16px;
+      color: white;
+      cursor: pointer;
+    }
+
+    .landing {
+      position: relative;
+      height: 100vh;
+      background-image: url('https://via.placeholder.com/1500');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding-top: 100px;
+    }
+
+    .landing::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      z-index: 1;
+    }
+
+    .landing .content {
+      position: relative;
+      z-index: 2;
+      color: #fff;
+    }
+
+    .landing h1 {
+      font-size: 4em;
+      animation: fadeIn 2s ease-out;
+    }
+
+    .landing p, .landing .btn {
+      opacity: 0;
+      animation: fadeIn 3s ease-out forwards;
+    }
+
+    .landing .btn {
+      animation-delay: 1.5s;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(-30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in-on-scroll {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1s ease;
+    }
+
+    .fade-in-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .about, .education, .skills, .projects, .contact {
+      padding: 60px 20px;
+      background-color: #222;
+      text-align: center;
+    }
+
+    .about .image-holder {
+      width: 250px;
+      height: 250px;
+      margin: 20px auto;
+      border-radius: 50%;
+      background-image: url('./images/kevin.jpg');
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease;
+    }
+
+    .about .image-holder:hover {
+      transform: scale(1.1);
+    }
+
+    .project-card, .skill-card {
+      background-color: #444;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .contact-form button {
+      background-color: #ff6347;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      font-size: 1.2em;
+    }
+
+    .btn-outline-light {
+      border: 2px solid #fff;
+      color: #fff;
+      transition: all 0.3s ease;
+    }
+
+    .btn-outline-light:hover {
+      background-color: #fff;
+      color: #111;
+    }
+
+    footer {
+      padding: 20px;
+      text-align: center;
+      background-color: #111;
+    }
+
+    #scrollTopBtn {
+      position: fixed;
+      bottom: 40px;
+      right: 20px;
+      display: none;
+      background-color: #ff6347;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 50%;
+      font-size: 1.5em;
+      z-index: 999;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .landing h1 {
+        font-size: 2.5em;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <a class="navbar-brand" href="#">Tool, Jhiro Ramir</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+        <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+        <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        <li class="nav-item"><button id="darkModeBtn" class="dark-mode-btn">🌙 Dark Mode</button></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<section class="landing">
+  <div class="content">
+    <h1>Hello, I'm <span>Tool, Jhiro Ramir</span></h1>
+    <p>A Humble <strong>Student</strong> with a creative mindset that can build something like this.</p>
+    <a href="#about" class="btn btn-primary mt-3">See My Work</a>
+  </div>
+</section>
+
+<!-- 🔽 ENHANCED CONTACT SECTION -->
+<section id="contact" class="contact fade-in-on-scroll">
+  <div class="container">
+    <h2>Contact Me</h2>
+    <p>If you’d like to collaborate, ask a question, or just say hi — I’d love to hear from you!</p>
+
+    <!-- Social Icons -->
+    <div class="mb-4">
+      <a href="https://github.com/yourusername" target="_blank" class="me-3 text-white fs-4">
+        <i class="bi bi-github"></i>
+      </a>
+      <a href="https://linkedin.com/in/yourprofile" target="_blank" class="me-3 text-white fs-4">
+        <i class="bi bi-linkedin"></i>
+      </a>
+      <a href="mailto:youremail@example.com" class="me-3 text-white fs-4">
+        <i class="bi bi-envelope-fill"></i>
+      </a>
+    </div>
+
+    <!-- Contact Form -->
+    <form class="contact-form" action="https://formspree.io/f/yourFormID" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+
+    <a href="./files/JhiroRamirTool_Resume.pdf" class="btn btn-outline-light mt-4" download>
+      <i class="bi bi-download"></i> Download Resume
+    </a>
+  </div>
+</section>
+
+<!-- Scroll to Top Button -->
+<button id="scrollTopBtn" title="Go to top">⬆️</button>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  const darkModeBtn = document.getElementById('darkModeBtn');
+  darkModeBtn.addEventListener('click', () => {
+    const isLight = document.body.classList.toggle('light-mode');
+    darkModeBtn.innerHTML = isLight ? '🌞 Light Mode' : '🌙 Dark Mode';
+    localStorage.setItem('darkMode', isLight);
+  });
+
+  if (localStorage.getItem('darkMode') === 'true') {
+    document.body.classList.add('light-mode');
+    darkModeBtn.innerHTML = '🌞 Light Mode';
+  }
+
+  window.addEventListener('scroll', () => {
+    document.querySelectorAll('.fade-in-on-scroll').forEach(el => {
+      if (el.getBoundingClientRect().top < window.innerHeight - 100) {
+        el.classList.add('visible');
+      }
+    });
+
+    const scrollBtn = document.getElementById('scrollTopBtn');
+    scrollBtn.style.display = window.scrollY > 300 ? "block" : "none";
+  });
+
+  document.getElementById('scrollTopBtn').onclick = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+</script>
+</body>
+</html>
