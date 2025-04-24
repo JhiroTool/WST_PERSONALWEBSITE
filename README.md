@@ -20,9 +20,9 @@ This is a personal portfolio website designed to showcase my background, technic
 
 1. Clone or download the repository  
 2. Ensure the following files and folders are included:
-   - `index.html`
+   - `pw.html`
    - `images/` (contains profile and other visuals)
-3. Open `index.html` in your web browser  
+3. Open `pw.html` in your web browser  
 4. Internet connection is required to load CDN resources (Bootstrap, Icons)  
 5. Replace placeholder images/text with your own content  
 
