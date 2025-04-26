@@ -1,216 +1,782 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Personal Website</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-
-    <!-- Bootstrap CSS v5.3.2 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
+        /* General Styles */
         body {
-            font-family: Arial, sans-serif;
-            background: url('https://via.placeholder.com/1920x1080') no-repeat center center fixed;
-            background-size: cover;
-            margin: 0;
-            padding: 0;
-           ;
+            font-family: 'Arial', sans-serif;
+            background-color: #0a0a0a;
+            color: white;
+            transition: all 0.3s ease;
         }
+
+        h1, h2 {
+            font-family: 'Arial', sans-serif;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        /* Dark and Light Mode */
+        body.light-mode {
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        body.light-mode .landing {
+            background: linear-gradient(to right, #f39c12, #f1c40f);
+        }
+
+        /* Sticky Navigation Header */
         header {
-            background-color: rgba(51, 51, 51, 0.8);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            z-index: 100;
+            padding: 10px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        header .navbar {
+            padding: 0;
+        }
+
+        header .navbar-brand {
             color: #fff;
-            padding: 1em;
+            font-size: 1.8em;
+            padding-left: 20px;
+            letter-spacing: 2px;
+        }
+
+        header .navbar-nav .nav-link {
+            color: #fff !important;
+            font-size: 1.2em;
+            margin-right: 20px;
+            transition: all 0.3s ease;
+        }
+
+        header .navbar-nav .nav-link:hover {
+            color: #ff6347 !important;
+            text-decoration: underline;
+        }
+
+        header .dark-mode-btn {
+            color: #fff;
+            background-color: #ff6347;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 16px;
+            cursor: pointer;
+        }
+
+        header .dark-mode-btn:hover {
+            background-color: #ff4500;
+        }
+
+        /* Landing Page with Parallax */
+        .landing {
+            position: relative;
+            height: 100vh;
+            background-image: url('https://via.placeholder.com/1500');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             text-align: center;
+            padding-top: 100px; /* To make space for the fixed header */
         }
-        main {
-            padding: 2em;
-            background-color: rgba(0, 0, 0, 0.5);
+
+        .landing .content {
+            z-index: 2;
+            color: #fff;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
         }
-        section {
-            margin-bottom: 2em;
+
+        /* Landing Page H1 Animation */
+        .landing h1 {
+            font-size: 4em;
+            margin-bottom: 20px;
+            animation: fadeInText 2s ease-out, slideIn 2s ease-out;
         }
-        /* CSS Animations */
-        @keyframes fadeIn {
-            from {
+
+        /* Keyframe for fade-in effect */
+        @keyframes fadeInText {
+            0% {
                 opacity: 0;
             }
-            to {
+            100% {
                 opacity: 1;
             }
         }
-        .fade-in {
-            animation: fadeIn 2s ease-in;
+
+        /* Keyframe for slide-in effect */
+        @keyframes slideIn {
+            0% {
+                transform: translateY(-50px);
+            }
+            100% {
+                transform: translateY(0);
+            }
         }
-        .slide-in {
-            transform: translateX(-100%);
+
+        .landing p {
+            font-size: 1.5em;
             opacity: 0;
-            transition: transform 1s ease-out, opacity 1s ease-out;
+            animation: fadeIn 3s ease-out 1s forwards;
         }
-        .slide-in-visible {
-            transform: translateX(0);
-            opacity: 1;
-        }
-        /* Additional Styles */
-        .card {
-            transition: transform 0.3s;
-        }
-        .card:hover {
-            transform: scale(1.05);
-        }
-        .btn-custom {
-            background-color: #333;
+
+        .landing .btn {
+            background-color: #ff6347;
+            padding: 15px 30px;
+            font-size: 1.2em;
             color: #fff;
             border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeIn 4s ease-out 1.5s forwards;
         }
-        .btn-custom:hover {
-            background-color: #555;
+
+        .landing .btn:hover {
+            background-color: #ff4500;
+        }
+
+        /* About Section with Interactive Image */
+        .about, .education, .skills, .projects, .contact {
+            padding: 60px 20px;
+            background-color: #222;
+            text-align: center;
+            position: relative;
+        }
+
+        .about .container, .education .container, .skills .container, .projects .container, .contact .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about .image-holder {
+            width: 250px;
+            height: 250px;
+            margin: 20px auto;
+            background-color: #444;
+            border-radius: 50%;
+            background-image: url('./images/kevin.jpg');
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.3s ease-in-out;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .about .image-holder:hover {
+            transform: scale(1.1);
+            cursor: pointer;
+        }
+
+        .about h2, .education h2, .skills h2, .projects h2, .contact h2 {
+            margin-top: 20px;
+        }
+
+        .about p, .education p, .skills p {
+            font-size: 1.2em;
+            margin-top: 10px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .projects .project-card {
+            background-color: #444;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        .contact-form button {
+            background-color: #ff6347;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .contact-form button:hover {
+            background-color: #ff4500;
+        }
+
+        /* Keyframe Animations */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Fade-in when scrolling */
+        .fade-in-on-scroll {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease-out;
+        }
+
+        .fade-in-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .landing h1 {
+                font-size: 2.5em;
+            }
+
+            .project-card {
+                margin: 10px 0;
+            }
+
+            .image-holders-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Hobbies Section Styles */
+        .hobbies {
+            padding: 60px 20px;
+            background-color: #222;
+            text-align: center;
+        }
+
+        .hobbies .image-holder {
+            width: 100%;
+            height: 200px;
+            margin: 10px auto;
+            background-color: #444;
+            border-radius: 10px;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.3s ease-in-out;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .hobbies .image-holder:hover {
+            transform: scale(1.1);
+            cursor: pointer;
+        }
+
+        .hobbies p {
+            font-size: 1.2em;
+            margin-top: 10px;
+            font-size: 1.1em;
+            color: #fff;
+        }
+
+        .education .image-holder {
+            width: 100%;
+            height: 200px;
+            margin: 10px auto;
+            background-color: #444;
+            border-radius: 10px;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.3s ease-in-out;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .education .image-holder:hover {
+            transform: scale(1.1);
+            cursor: pointer;
+        }
+
+        .education p {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 1.1em;
+            color: #fff;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar-brand {
+            font-size: 1.8em;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .navbar-nav .nav-link {
+            font-size: 1.2em;
+            margin: 0 10px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #ff6347;
+            transform: scale(1.1);
+        }
+
+        .btn-outline-light {
+            border-radius: 20px;
+            padding: 5px 15px;
+            font-size: 1em;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .btn-outline-light:hover {
+            background-color: #ff6347;
+            color: #fff;
+        }
+
+        /* Header Styling */
+        .d-flex {
+            height: 60px;
+        }
+
+        /* Dark Mode Toggle Styling */
+        .dark-mode-toggle {
+            position: relative;
+            width: 50px;
+            height: 25px;
+            margin-left: 20px;
+        }
+
+        .dark-mode-toggle input {
+            display: none;
+        }
+
+        .toggle-label {
+            display: block;
+            width: 100%;
+            height: 100%;
+            background-color: #ccc;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .toggle-label .toggle-circle {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 21px;
+            height: 21px;
+            background-color: #fff;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .dark-mode-toggle input:checked + .toggle-label {
+            background-color: #ff6347;
+        }
+
+        .dark-mode-toggle input:checked + .toggle-label .toggle-circle {
+            transform: translateX(25px);
+        }
+
+        /* Skills Section Styles */
+        .skill-card {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+        }
+
+        .skill-card h3 {
+            margin-top: 15px;
+            font-size: 1.5rem;
+            color: #fff;
+        }
+
+        .skill-card ul {
+            margin: 15px 0;
+            padding: 0;
+            list-style: none;
+            color: #ccc;
+        }
+
+        .skill-card ul li {
+            margin-bottom: 5px;
+            font-size: 1rem;
+        }
+
+        /* Enhanced Progress Bar Styles */
+        .progress {
+            height: 15px;
+            background-color: #444;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .progress-bar {
+            font-size: 0.9rem;
+            font-weight: bold;
+            line-height: 15px;
+            text-align: center;
+            transition: width 0.5s ease-in-out;
+        }
+
+        .progress-bar.bg-success {
+            background: linear-gradient(90deg, #28a745, #218838);
+        }
+
+        .progress-bar.bg-info {
+            background: linear-gradient(90deg, #17a2b8, #138496);
+        }
+
+        .progress-bar.bg-warning {
+            background: linear-gradient(90deg, #ffc107, #e0a800);
+        }
+
+        .progress-bar.bg-danger {
+            background: linear-gradient(90deg, #dc3545, #c82333);
+        }
+
+        .progress-bar.bg-primary {
+            background: linear-gradient(90deg, #007bff, #0056b3);
+        }
+
+        .progress-bar.bg-secondary {
+            background: linear-gradient(90deg, #6c757d, #5a6268);
         }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid mb-1">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> 
-                <span class="navbar-toggler-icon"></span> 
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a href="#about" class="nav-link fs-5">About Me</a></li>
-                    <li class="nav-item"><a href="#education" class="nav-link fs-5">Education</a></li>
-                    <li class="nav-item"><a href="#portfolio" class="nav-link fs-5">Project</a></li>
-                    <li class="nav-item"><a href="#contact" class="nav-link fs-5">Contact</a></li>
-                </ul>
-            </div>           
-        </div>
-    </nav>
 
-        <section id="about" class="fade-in">
-            <div class="container p-5 container-fluid text-white text-center bg-black">
-                <h2 class="text-center mb-4">About Me</h2>
-                <div class="row align-items-center">
-                    <div class="col-md-4">
-                        <img src="./images/kevin4.jpg" class="rounded-circle img-fluid border border-white border-3" alt="">
-                    </div>
-                    <div class="col-md-8">
-                        <blockquote class="blockquote text-center">
-                            <p class="my-4">Striving for exellencein every line of code</p>
-                        </blockquote>
-                            <p class="text-start">I am the <strong>Uncrowned King</strong></p>
-                            <h5 class="text-start">Skills:</h5>
-                            <div class="row">
-                                <div class="col-md-6 col-sm-6">
-                                    <ul>
-                                        <li>HTML, CSS, JavaScript</li>
-                                        <li>HTML, CSS, JavaScript</li>
-                                        <li>Weight Lifting </li>
-                                        <li>Calistenic</li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-6 col-sm-6">
-                                    <ul>
-                                        <li>HTML, CSS, JavaScript</li>
-                                        <li>Weight Lifting </li>
-                                        <li>Calistenic</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-            </div>
-        </section>
-
-        <section id="education" class="fade-in">
+    <!-- Header with Navigation and Dark Mode Toggle -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
-                <h2>Education</h2>
-                <ul class="list-group">
-                    <li class="list-group-item bg-dark text-white">Bachelor of Science in Computer Science - University Name (Year)</li>
-                    <li class="list-group-item bg-dark text-white">Master of Science in Software Engineering - University Name (Year)</li>
-                    <li class="list-group-item bg-dark text-white">PhD in Artificial Intelligence - University Name (Year)</li>
-                </ul>
-            </div>
-        </section>
-
-        <section id="portfolio" class="slide-in">
-            <div class="container p-5">
-                <div class="row">
-                    <div class="col-md-4 my-3">
-                        <div class="card h-100 d-flex flex-collumn">
-                            <img src="./images/kevin.jpg" alt="" class="card-img-top" />
-                            <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">Project 1</h5>
-                                <p class="card-text flex-grow">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
-                                <a href="#" class="btn btn-primary mt-auto">View Project</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 my-3">
-                        <div class="card h-100 d-flex flex-collumn">
-                            <img src="./images/kevin2.jpg" alt="" class="card-img-top" />
-                            <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">Project 2</h5>
-                                <p class="card-text flex-grow">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
-                                <a href="#" class="btn btn-primary mt-auto">View Project</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 my-3">
-                        <div class="card h-100 d-flex flex-collumn">
-                            <img src="./images/kevin3.jpg" alt="" class="card-img-top" />
-                            <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">Project 3</h5>
-                                <p class="card-text flex-grow">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
-                                <a href="#" class="btn btn-primary mt-auto">View Project</a>
-                            </div>
-                        </div>
+                <a class="navbar-brand" href="#">MyPortfolio</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#about">About Me</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#hobbies">Hobbies</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#education">Education</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#skills">Skills</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#projects">Projects</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact">Contact</a>
+                        </li>
+                    </ul>
+                    <div class="dark-mode-toggle">
+                        <input type="checkbox" id="darkModeToggle" />
+                        <label for="darkModeToggle" class="toggle-label">
+                            <span class="toggle-circle"></span>
+                        </label>
                     </div>
                 </div>
             </div>
-        </section>
+        </nav>
+    </header>
 
-        <div id="Contact" class="container-fluid bg-dark p-5">
-            <div class="container border border-1 rounded-3 p-4">
-                <h2 class="text-center mb-4 text-white">Contact Me</h2>
-                    <form>
-                        <div class="mb-1">
-                            <label for="name" class="form-label text-white">Name</label>
-                            <input type="text" class="form-control" id="name" placeholder="Enter your name" required />
-                        </div>
-               
-                        <div class="mb-1">
-                            <label for="email" class="form-label text-white">Email</label>
-                            <input type="text" class="form-control" id="email" placeholder="Enter your email" required />
-                        </div>
-    
-                        <div class="mb-1">
-                            <label for="messages" class="form-label text-white">Messages</label>
-                            <textarea class="form-control" row=3 id="messages" placeholder="Enter your messages" required></textarea>
-                        </div>
-                        <button class ="btn btn-primary mt-4 d-flex justify-content-center w-100">Send</button>
-                    </form>           
+    <!-- Landing Page -->
+    <section class="landing">
+        <div class="content">
+            <h1 id="animatedText">Hello, I'm Tool, Jhiro Ramir</h1>
+            <p class="fade-in">A Humble <strong>Student</strong> with a creative mindset that can build something like this.</p>
+            <a href="#about" class="btn fade-in">See My Work</a>
+        </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about" class="about fade-in-on-scroll">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="image-holder"></div>
+            <p>Write a compelling introduction about yourself, your skills, and your background. Show your journey, what inspires you, and your future aspirations.</p>
+        </div>
+    </section>
+
+    <!-- Hobbies Section -->
+    <section id="hobbies" class="hobbies fade-in-on-scroll">
+        <div class="container">
+            <h2>Hobbies</h2>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="image-holder" style="background-image: url('./images/hobby1.jpg');"></div>
+                    <p>Photography</p>
+                </div>
+                <div class="col-md-3">
+                    <div class="image-holder" style="background-image: url('./images/hobby2.jpg');"></div>
+                    <p>Painting</p>
+                </div>
+                <div class="col-md-3">
+                    <div class="image-holder" style="background-image: url('./images/hobby3.jpg');"></div>
+                    <p>Gaming</p>
+                </div>
+                <div class="col-md-3">
+                    <div class="image-holder" style="background-image: url('./images/hobby4.jpg');"></div>
+                    <p>Traveling</p>
+                </div>
             </div>
         </div>
+    </section>
 
-    
-    <div class="container-fluid bg-light py-3">
-        <div class="container text-center">
-            <div class="d-flex justify-content-center gap-4">
-                <a href="" class="text-decoration-none text-dark"><i class="bi bi-facebook"></i></a>
-                <a href="" class="text-decoration-none text-dark"><i class="bi bi-instagram"></i></a>
-                <a href="https://github.com/JhiroTool" class="text-decoration-none text-dark"><i class="bi bi-github"></i></a>
-                <a href="" class="text-decoration-none text-dark"><i class="bi bi-twitter-x"></i></a>
+    <!-- Education Section -->
+    <section id="education" class="education fade-in-on-scroll">
+        <div class="container">
+            <h2>Education</h2>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="image-holder" style="background-image: url('./images/education1.jpg');"></div>
+                    <p>Bachelor's Degree in Computer Science</p>
+                    <p>XYZ University, 2020</p>
+                </div>
+                <div class="col-md-3">
+                    <div class="image-holder" style="background-image: url('./images/education2.jpg');"></div>
+                    <p>High School Diploma</p>
+                    <p>ABC High School, 2016</p>
+                </div>
+                <div class="col-md-3">
+                    <div class="image-holder" style="background-image: url('./images/education3.jpg');"></div>
+                    <p>Online Certification in Web Development</p>
+                    <p>Udemy, 2021</p>
+                </div>
+                <div class="col-md-3">
+                    <div class="image-holder" style="background-image: url('./images/education4.jpg');"></div>
+                    <p>Masters in Data Science</p>
+                    <p>DEF University, 2023</p>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
+    <!-- Skills Section -->
+    <section id="skills" class="skills fade-in-on-scroll">
+        <div class="container">
+            <h2>Skills</h2>
+            <div class="row">
+                <!-- Programming Languages -->
+                <div class="col-md-4">
+                    <div class="skill-card text-center">
+                        <i class="bi bi-code-slash" style="font-size: 2rem; color: #ff6347;"></i>
+                        <h3>Programming Languages</h3>
+                        <ul class="list-unstyled">
+                            <li>Python</li>
+                            <div class="progress mb-2">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                                    90%
+                                </div>
+                            </div>
+                            <li>JavaScript</li>
+                            <div class="progress mb-2">
+                                <div class="progress-bar bg-info" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+                                    80%
+                                </div>
+                            </div>
+                            <li>C++</li>
+                            <div class="progress mb-2">
+                                <div class="progress-bar bg-warning" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                                    75%
+                                </div>
+                            </div>
+                            <li>Java</li>
+                            <div class="progress mb-2">
+                                <div class="progress-bar bg-danger" role="progressbar" style="width: 70%;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+                                    70%
+                                </div>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
 
-    <footer class="container-fluid bg-dark text-white text-center py-3">
-        <p class="mb-0">&copy; 2025 Tool. All rights reserved.</p>
+                <!-- Web Development -->
+                <div class="col-md-4">
+                    <div class="skill-card text-center">
+                        <i class="bi bi-globe" style="font-size: 2rem; color: #ff6347;"></i>
+                        <h3>Web Development</h3>
+                        <ul class="list-unstyled">
+                            <li>HTML/CSS</li>
+                            <div class="progress mb-2">
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
+                                    85%
+                                </div>
+                            </div>
+                            <li>JavaScript</li>
+                            <div class="progress mb-2">
+                                <div class="progress-bar bg-info" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                                    90%
+                                </div>
+                            </div>
+                            <li>React.js</li>
+                            <div class="progress mb-2">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+                                    80%
+                                </div>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Tools & Platforms -->
+                <div class="col-md-4">
+                    <div class="skill-card text-center">
+                        <i class="bi bi-tools" style="font-size: 2rem; color: #ff6347;"></i>
+                        <h3>Tools & Platforms</h3>
+                        <ul class="list-unstyled">
+                            <li>Git</li>
+                            <div class="progress mb-2">
+                                <div class="progress-bar bg-secondary" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+                                    80%
+                                </div>
+                            </div>
+                            <li>Docker</li>
+                            <div class="progress mb-2">
+                                <div class="progress-bar bg-warning" role="progressbar" style="width: 70%;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+                                    70%
+                                </div>
+                            </div>
+                            <li>AWS</li>
+                            <div class="progress mb-2">
+                                <div class="progress-bar bg-danger" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                                    75%
+                                </div>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects fade-in-on-scroll">
+        <div class="container">
+            <h2>My Projects</h2>
+            <div class="row">
+                <!-- Example Project 1 -->
+                <div class="col-md-4">
+                    <div class="project-card">
+                        <h3>Project 1: Web App</h3>
+                        <p>Description of the web application, technologies used, and any key features of the project.</p>
+                        <a href="#" class="btn btn-secondary">View Project</a>
+                    </div>
+                </div>
+
+                <!-- Example Project 2 -->
+                <div class="col-md-4">
+                    <div class="project-card">
+                        <h3>Project 2: Mobile App</h3>
+                        <p>Description of the mobile application, technologies used, and key features of the project.</p>
+                        <a href="#" class="btn btn-secondary">View Project</a>
+                    </div>
+                </div>
+
+                <!-- Example Project 3 -->
+                <div class="col-md-4">
+                    <div class="project-card">
+                        <h3>Project 3: Game</h3>
+                        <p>Description of the game, technologies used, and key features.</p>
+                        <a href="#" class="btn btn-secondary">View Project</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact fade-in-on-scroll">
+        <div class="container">
+            <h2>Contact Me</h2>
+            <form class="contact-form">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="text-center">
+        <p>&copy; 2025 Designed by Tool</p>
+        <div class="social-links d-flex justify-content-center align-items-center">
+            <a href="https://facebook.com" target="_blank" class="text-white me-3">
+                <i class="bi bi-facebook"></i>
+            </a>
+            <a href="https://github.com" target="_blank" class="text-white me-3">
+                <i class="bi bi-github"></i>
+            </a>
+            <a href="https://instagram.com" target="_blank" class="text-white me-3">
+                <i class="bi bi-instagram"></i>
+            </a>
+            <a href="https://twitter.com" target="_blank" class="text-white">
+                <i class="bi bi-twitter"></i>
+            </a>
+        </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Dark Mode Toggle Script
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        darkModeToggle.addEventListener('change', () => {
+            document.body.classList.toggle('light-mode');
+            localStorage.setItem('darkMode', document.body.classList.contains('light-mode'));
+        });
 
+        // Load saved mode from localStorage
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('light-mode');
+            darkModeToggle.checked = true;
+        }
+
+        // Show elements on scroll for fade-in effect
+        window.addEventListener('scroll', () => {
+            const fadeElements = document.querySelectorAll('.fade-in-on-scroll');
+            fadeElements.forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight) {
+                    el.classList.add('visible');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
