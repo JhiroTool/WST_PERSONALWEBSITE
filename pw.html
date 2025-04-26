@@ -320,6 +320,16 @@
             color: #fff;
         }
 
+        /* Add hover effect for education section */
+        .education .image-holder {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .education .image-holder:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
         /* Navbar Styling */
         .navbar {
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -475,6 +485,8 @@
             background: linear-gradient(90deg, #6c757d, #5a6268);
         }
     </style>
+    <meta name="description" content="Portfolio of Jhiro Ramir, showcasing skills, projects, and education.">
+<meta name="keywords" content="Portfolio, Jhiro Ramir, Web Development, Projects, Skills">
 </head>
 <body>
 
@@ -813,13 +825,6 @@
         window.addEventListener('scroll', () => {
             const fadeElements = document.querySelectorAll('.fade-in-on-scroll');
             fadeElements.forEach(el => {
-                const rect = el.getBoundingClientRect();
-                if (rect.top < window.innerHeight && rect.bottom > 0) {
-                    // Add 'visible' class to trigger animation
-                    el.classList.add('visible');
-                } else {
-                    // Remove 'visible' class to reset animation
-                    el.classList.remove('visible');
                 }
             });
         });
