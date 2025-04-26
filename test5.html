@@ -102,10 +102,31 @@
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
         }
 
+        /* Landing Page H1 Animation */
         .landing h1 {
             font-size: 4em;
             margin-bottom: 20px;
-            animation: fadeIn 2s ease-out;
+            animation: fadeInText 2s ease-out, slideIn 2s ease-out;
+        }
+
+        /* Keyframe for fade-in effect */
+        @keyframes fadeInText {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Keyframe for slide-in effect */
+        @keyframes slideIn {
+            0% {
+                transform: translateY(-50px);
+            }
+            100% {
+                transform: translateY(0);
+            }
         }
 
         .landing p {
@@ -243,38 +264,254 @@
             }
         }
 
+        /* Hobbies Section Styles */
+        .hobbies {
+            padding: 60px 20px;
+            background-color: #222;
+            text-align: center;
+        }
+
+        .hobbies .image-holder {
+            width: 100%;
+            height: 200px;
+            margin: 10px auto;
+            background-color: #444;
+            border-radius: 10px;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.3s ease-in-out;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .hobbies .image-holder:hover {
+            transform: scale(1.1);
+            cursor: pointer;
+        }
+
+        .hobbies p {
+            font-size: 1.2em;
+            margin-top: 10px;
+            font-size: 1.1em;
+            color: #fff;
+        }
+
+        .education .image-holder {
+            width: 100%;
+            height: 200px;
+            margin: 10px auto;
+            background-color: #444;
+            border-radius: 10px;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.3s ease-in-out;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .education .image-holder:hover {
+            transform: scale(1.1);
+            cursor: pointer;
+        }
+
+        .education p {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 1.1em;
+            color: #fff;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar-brand {
+            font-size: 1.8em;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .navbar-nav .nav-link {
+            font-size: 1.2em;
+            margin: 0 10px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #ff6347;
+            transform: scale(1.1);
+        }
+
+        .btn-outline-light {
+            border-radius: 20px;
+            padding: 5px 15px;
+            font-size: 1em;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .btn-outline-light:hover {
+            background-color: #ff6347;
+            color: #fff;
+        }
+
+        /* Header Styling */
+        .d-flex {
+            height: 60px;
+        }
+
+        /* Dark Mode Toggle Styling */
+        .dark-mode-toggle {
+            position: relative;
+            width: 50px;
+            height: 25px;
+            margin-left: 20px;
+        }
+
+        .dark-mode-toggle input {
+            display: none;
+        }
+
+        .toggle-label {
+            display: block;
+            width: 100%;
+            height: 100%;
+            background-color: #ccc;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .toggle-label .toggle-circle {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 21px;
+            height: 21px;
+            background-color: #fff;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .dark-mode-toggle input:checked + .toggle-label {
+            background-color: #ff6347;
+        }
+
+        .dark-mode-toggle input:checked + .toggle-label .toggle-circle {
+            transform: translateX(25px);
+        }
+
+        /* Skills Section Styles */
+        .skill-card {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+        }
+
+        .skill-card h3 {
+            margin-top: 15px;
+            font-size: 1.5rem;
+            color: #fff;
+        }
+
+        .skill-card ul {
+            margin: 15px 0;
+            padding: 0;
+            list-style: none;
+            color: #ccc;
+        }
+
+        .skill-card ul li {
+            margin-bottom: 5px;
+            font-size: 1rem;
+        }
+
+        /* Enhanced Progress Bar Styles */
+        .progress {
+            height: 15px;
+            background-color: #444;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .progress-bar {
+            font-size: 0.9rem;
+            font-weight: bold;
+            line-height: 15px;
+            text-align: center;
+            transition: width 0.5s ease-in-out;
+        }
+
+        .progress-bar.bg-success {
+            background: linear-gradient(90deg, #28a745, #218838);
+        }
+
+        .progress-bar.bg-info {
+            background: linear-gradient(90deg, #17a2b8, #138496);
+        }
+
+        .progress-bar.bg-warning {
+            background: linear-gradient(90deg, #ffc107, #e0a800);
+        }
+
+        .progress-bar.bg-danger {
+            background: linear-gradient(90deg, #dc3545, #c82333);
+        }
+
+        .progress-bar.bg-primary {
+            background: linear-gradient(90deg, #007bff, #0056b3);
+        }
+
+        .progress-bar.bg-secondary {
+            background: linear-gradient(90deg, #6c757d, #5a6268);
+        }
     </style>
 </head>
 <body>
 
     <!-- Header with Navigation and Dark Mode Toggle -->
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark">
-            <a class="navbar-brand" href="#">Tool, Jhiro Ramir</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#about">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#education">Education</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#skills">Skills</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#projects">Projects</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact</a>
-                    </li>
-                    <li class="nav-item">
-                        <button class="dark-mode-btn nav-link" id="darkModeBtn">🌙 Dark Mode</button>
-                    </li>
-                </ul>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">MyPortfolio</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#about">About Me</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#hobbies">Hobbies</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#education">Education</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#skills">Skills</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#projects">Projects</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact">Contact</a>
+                        </li>
+                    </ul>
+                    <div class="dark-mode-toggle">
+                        <input type="checkbox" id="darkModeToggle" />
+                        <label for="darkModeToggle" class="toggle-label">
+                            <span class="toggle-circle"></span>
+                        </label>
+                    </div>
+                </div>
             </div>
         </nav>
     </header>
@@ -282,7 +519,7 @@
     <!-- Landing Page -->
     <section class="landing">
         <div class="content">
-            <h1 class="fade-in">Hello, I'm <span>Tool, Jhiro Ramir</span></h1>
+            <h1 id="animatedText">Hello, I'm Tool, Jhiro Ramir</h1>
             <p class="fade-in">A Humble <strong>Student</strong> with a creative mindset that can build something like this.</p>
             <a href="#about" class="btn fade-in">See My Work</a>
         </div>
@@ -297,19 +534,56 @@
         </div>
     </section>
 
+    <!-- Hobbies Section -->
+    <section id="hobbies" class="hobbies fade-in-on-scroll">
+        <div class="container">
+            <h2>Hobbies</h2>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="image-holder" style="background-image: url('./images/hobby1.jpg');"></div>
+                    <p>Photography</p>
+                </div>
+                <div class="col-md-3">
+                    <div class="image-holder" style="background-image: url('./images/hobby2.jpg');"></div>
+                    <p>Painting</p>
+                </div>
+                <div class="col-md-3">
+                    <div class="image-holder" style="background-image: url('./images/hobby3.jpg');"></div>
+                    <p>Gaming</p>
+                </div>
+                <div class="col-md-3">
+                    <div class="image-holder" style="background-image: url('./images/hobby4.jpg');"></div>
+                    <p>Traveling</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Education Section -->
     <section id="education" class="education fade-in-on-scroll">
         <div class="container">
             <h2>Education</h2>
-            <div class="education-card">
-                <h3>Bachelor of Science in Computer Science</h3>
-                <p>XYZ University, 2023 - Present</p>
-                <p>Description of your education, such as key subjects, projects, or relevant skills learned during this time.</p>
-            </div>
-            <div class="education-card">
-                <h3>High School Diploma</h3>
-                <p>ABC High School, 2020 - 2023</p>
-                <p>Highlights of your high school education, such as achievements, extracurriculars, or special projects.</p>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="image-holder" style="background-image: url('./images/education1.jpg');"></div>
+                    <p>Bachelor's Degree in Computer Science</p>
+                    <p>XYZ University, 2020</p>
+                </div>
+                <div class="col-md-3">
+                    <div class="image-holder" style="background-image: url('./images/education2.jpg');"></div>
+                    <p>High School Diploma</p>
+                    <p>ABC High School, 2016</p>
+                </div>
+                <div class="col-md-3">
+                    <div class="image-holder" style="background-image: url('./images/education3.jpg');"></div>
+                    <p>Online Certification in Web Development</p>
+                    <p>Udemy, 2021</p>
+                </div>
+                <div class="col-md-3">
+                    <div class="image-holder" style="background-image: url('./images/education4.jpg');"></div>
+                    <p>Masters in Data Science</p>
+                    <p>DEF University, 2023</p>
+                </div>
             </div>
         </div>
     </section>
@@ -321,55 +595,91 @@
             <div class="row">
                 <!-- Programming Languages -->
                 <div class="col-md-4">
-                    <div class="skill-card">
+                    <div class="skill-card text-center">
+                        <i class="bi bi-code-slash" style="font-size: 2rem; color: #ff6347;"></i>
                         <h3>Programming Languages</h3>
-                        <p>Python, JavaScript, C++, Java</p>
-                        <div class="progress mb-2">
-                            <div class="progress-bar" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">Python (90%)</div>
-                        </div>
-                        <div class="progress mb-2">
-                            <div class="progress-bar" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">JavaScript (80%)</div>
-                        </div>
-                        <div class="progress mb-2">
-                            <div class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">C++ (75%)</div>
-                        </div>
-                        <div class="progress mb-2">
-                            <div class="progress-bar" role="progressbar" style="width: 70%;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">Java (70%)</div>
-                        </div>
+                        <ul class="list-unstyled">
+                            <li>Python</li>
+                            <div class="progress mb-2">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                                    90%
+                                </div>
+                            </div>
+                            <li>JavaScript</li>
+                            <div class="progress mb-2">
+                                <div class="progress-bar bg-info" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+                                    80%
+                                </div>
+                            </div>
+                            <li>C++</li>
+                            <div class="progress mb-2">
+                                <div class="progress-bar bg-warning" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                                    75%
+                                </div>
+                            </div>
+                            <li>Java</li>
+                            <div class="progress mb-2">
+                                <div class="progress-bar bg-danger" role="progressbar" style="width: 70%;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+                                    70%
+                                </div>
+                            </div>
+                        </ul>
                     </div>
                 </div>
 
                 <!-- Web Development -->
                 <div class="col-md-4">
-                    <div class="skill-card">
+                    <div class="skill-card text-center">
+                        <i class="bi bi-globe" style="font-size: 2rem; color: #ff6347;"></i>
                         <h3>Web Development</h3>
-                        <p>HTML, CSS, JavaScript, React.js, Bootstrap</p>
-                        <div class="progress mb-2">
-                            <div class="progress-bar" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">HTML/CSS (85%)</div>
-                        </div>
-                        <div class="progress mb-2">
-                            <div class="progress-bar" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">JavaScript (90%)</div>
-                        </div>
-                        <div class="progress mb-2">
-                            <div class="progress-bar" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">React.js (80%)</div>
-                        </div>
+                        <ul class="list-unstyled">
+                            <li>HTML/CSS</li>
+                            <div class="progress mb-2">
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
+                                    85%
+                                </div>
+                            </div>
+                            <li>JavaScript</li>
+                            <div class="progress mb-2">
+                                <div class="progress-bar bg-info" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                                    90%
+                                </div>
+                            </div>
+                            <li>React.js</li>
+                            <div class="progress mb-2">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+                                    80%
+                                </div>
+                            </div>
+                        </ul>
                     </div>
                 </div>
 
                 <!-- Tools & Platforms -->
                 <div class="col-md-4">
-                    <div class="skill-card">
+                    <div class="skill-card text-center">
+                        <i class="bi bi-tools" style="font-size: 2rem; color: #ff6347;"></i>
                         <h3>Tools & Platforms</h3>
-                        <p>Git, Docker, Firebase, AWS, Linux</p>
-                        <div class="progress mb-2">
-                            <div class="progress-bar" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">Git (80%)</div>
-                        </div>
-                        <div class="progress mb-2">
-                            <div class="progress-bar" role="progressbar" style="width: 70%;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">Docker (70%)</div>
-                        </div>
-                        <div class="progress mb-2">
-                            <div class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">AWS (75%)</div>
-                        </div>
+                        <ul class="list-unstyled">
+                            <li>Git</li>
+                            <div class="progress mb-2">
+                                <div class="progress-bar bg-secondary" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+                                    80%
+                                </div>
+                            </div>
+                            <li>Docker</li>
+                            <div class="progress mb-2">
+                                <div class="progress-bar bg-warning" role="progressbar" style="width: 70%;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+                                    70%
+                                </div>
+                            </div>
+                            <li>AWS</li>
+                            <div class="progress mb-2">
+                                <div class="progress-bar bg-danger" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                                    75%
+                                </div>
+                            </div>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -425,28 +735,37 @@
     </section>
 
     <!-- Footer Section -->
-    <footer>
+    <footer class="text-center">
         <p>&copy; 2025 Designed by Tool</p>
+        <div class="social-links d-flex justify-content-center align-items-center">
+            <a href="https://facebook.com" target="_blank" class="text-white me-3">
+                <i class="bi bi-facebook"></i>
+            </a>
+            <a href="https://github.com" target="_blank" class="text-white me-3">
+                <i class="bi bi-github"></i>
+            </a>
+            <a href="https://instagram.com" target="_blank" class="text-white me-3">
+                <i class="bi bi-instagram"></i>
+            </a>
+            <a href="https://twitter.com" target="_blank" class="text-white">
+                <i class="bi bi-twitter"></i>
+            </a>
+        </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Dark Mode Toggle
-        const darkModeBtn = document.getElementById('darkModeBtn');
-        darkModeBtn.addEventListener('click', () => {
+        // Dark Mode Toggle Script
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        darkModeToggle.addEventListener('change', () => {
             document.body.classList.toggle('light-mode');
-            if (document.body.classList.contains('light-mode')) {
-                darkModeBtn.innerHTML = '🌙 Dark Mode';
-            } else {
-                darkModeBtn.innerHTML = '🌞 Light Mode';
-            }
             localStorage.setItem('darkMode', document.body.classList.contains('light-mode'));
         });
 
-        // Check Dark Mode preference on load
+        // Load saved mode from localStorage
         if (localStorage.getItem('darkMode') === 'true') {
             document.body.classList.add('light-mode');
-            darkModeBtn.innerHTML = '🌙 Dark Mode';
+            darkModeToggle.checked = true;
         }
 
         // Show elements on scroll for fade-in effect
