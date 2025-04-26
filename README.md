@@ -50,4 +50,5 @@ This is a personal portfolio website designed to showcase my background, technic
 **Tool, Jhiro Ramir**  
 - GitHub: [@JhiroTool](https://github.com/JhiroTool)  
 - Facebook: [Profile](https://www.facebook.com/share/1Cj8kp7Dhp/)  
-- *Instagram & Twitter links to be added*
+- Instagram :
+- Twitter :
