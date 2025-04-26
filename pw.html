@@ -196,11 +196,22 @@
         }
 
         .projects .project-card {
-            background-color: #444;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .projects .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .image-holder {
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover .image-holder {
+            transform: scale(1.05);
         }
 
         .contact-form input, .contact-form textarea {
@@ -304,17 +315,6 @@
             border-radius: 10px;
             background-size: cover;
             background-position: center;
-            transition: transform 0.3s ease-in-out;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-        }
-
-        .education .image-holder:hover {
-            transform: scale(1.1);
-            cursor: pointer;
-        }
-
-        .education p {
-            text-align: center;
             margin-top: 10px;
             font-size: 1.1em;
             color: #fff;
@@ -692,32 +692,38 @@
     <!-- Projects Section -->
     <section id="projects" class="projects fade-in-on-scroll">
         <div class="container">
-            <h2>My Projects</h2>
+            <h2 class="text-center mb-5">My Projects</h2>
             <div class="row">
-                <!-- Example Project 1 -->
+                <!-- Project 1 -->
                 <div class="col-md-4">
-                    <div class="project-card">
-                        <div class="image-holder" style="background-image: url('./images/project1.jpg'); height: 200px; border-radius: 10px;"></div>
-                        <h3>Project 1: Web App</h3>
-                        <p>Description of the web application, technologies used, and any key features of the project.</p>
+                    <div class="project-card shadow-sm">
+                        <div class="image-holder" style="background-image: url('./images/kevin4.jpg'); height: 200px; border-radius: 10px; background-size: cover; background-position: center;"></div>
+                        <div class="project-content p-3">
+                            <h3 class="project-title">Project 1: Web App</h3>
+                            <p class="project-description">A web application built using modern technologies like React.js and Node.js. Features include user authentication, real-time updates, and responsive design.</p>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Example Project 2 -->
+                <!-- Project 2 -->
                 <div class="col-md-4">
-                    <div class="project-card">
-                        <div class="image-holder" style="background-image: url('./images/app.jpg'); height: 200px; border-radius: 10px;"></div>
-                        <h3>Project 2: Mobile App</h3>
-                        <p>Description of the mobile application, technologies used, and key features of the project.</p>
+                    <div class="project-card shadow-sm">
+                        <div class="image-holder" style="background-image: url('./images/app.jpg'); height: 200px; border-radius: 10px; background-size: cover; background-position: center;"></div>
+                        <div class="project-content p-3">
+                            <h3 class="project-title">Project 2: Mobile App</h3>
+                            <p class="project-description">A mobile application developed with Flutter, featuring a sleek UI and seamless integration with Firebase for backend services.</p>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Example Project 3 -->
+                <!-- Project 3 -->
                 <div class="col-md-4">
-                    <div class="project-card">
-                        <div class="image-holder" style="background-image: url('./images/project3.jpg'); height: 200px; border-radius: 10px;"></div>
-                        <h3>Project 3: Game</h3>
-                        <p>Description of the game, technologies used, and key features.</p>
+                    <div class="project-card shadow-sm">
+                        <div class="image-holder" style="background-image: url('./images/kevin2.jpg'); height: 200px; border-radius: 10px; background-size: cover; background-position: center;"></div>
+                        <div class="project-content p-3">
+                            <h3 class="project-title">Project 3: Game</h3>
+                            <p class="project-description">A 2D game built using Unity and C#. Features include multiplayer support, custom animations, and engaging gameplay mechanics.</p>
+                        </div>
                     </div>
                 </div>
             </div>
