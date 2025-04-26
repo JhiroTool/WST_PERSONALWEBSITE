@@ -9,28 +9,77 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
-        /* General Styles */
+        /* Default Dark Mode */
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #0a0a0a;
-            color: white;
+            background-color: #0a0a0a; /* Dark background */
+            color: white; /* White text */
             transition: all 0.3s ease;
         }
 
-        h1, h2 {
-            font-family: 'Arial', sans-serif;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        /* Dark and Light Mode */
+        /* Light Mode */
         body.light-mode {
-            background-color: #f4f4f4;
-            color: #333;
+            background-color: #ffffff; /* Pure white background */
+            color: #000000; /* Black text */
         }
 
-        body.light-mode .landing {
-            background: linear-gradient(to right, #f39c12, #f1c40f);
+        /* Ensure all sections have proper contrast */
+        section {
+            background-color: inherit; /* Matches body background */
+            color: inherit; /* Matches body text color */
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #333; /* Dark navbar for dark mode */
+        }
+
+        body.light-mode .navbar {
+            background-color: #f8f9fa; /* Light navbar for light mode */
+        }
+
+        /* Cards and Forms */
+        .project-card, .skill-card, .contact-form input, .contact-form textarea {
+            background-color: #222; /* Dark background for cards/forms */
+            color: white; /* White text */
+        }
+
+        body.light-mode .project-card,
+        body.light-mode .skill-card,
+        body.light-mode .contact-form input,
+        body.light-mode .contact-form textarea {
+            background-color: #f9f9f9; /* Light background for cards/forms */
+            color: black; /* Black text */
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333; /* Dark footer */
+            color: white;
+        }
+
+        body.light-mode footer {
+            background-color: #f8f9fa; /* Light footer */
+            color: black;
+        }
+
+        /* Buttons */
+        .btn {
+            background-color: #ff6347; /* Default button color */
+            color: white;
+        }
+
+        body.light-mode .btn {
+            background-color: #007bff; /* Light mode button color */
+            color: white;
+        }
+
+        /* Fix for Social Links */
+        .social-links a {
+            color: white;
+        }
+
+        body.light-mode .social-links a {
+            color: black;
         }
 
         /* Sticky Navigation Header */
@@ -762,21 +811,13 @@
             localStorage.setItem('darkMode', document.body.classList.contains('light-mode'));
         });
 
-        // Load saved mode from localStorage
+        // Load saved mode from localStorage or default to dark mode
         if (localStorage.getItem('darkMode') === 'true') {
             document.body.classList.add('light-mode');
             darkModeToggle.checked = true;
+        } else {
+            document.body.classList.remove('light-mode'); // Ensure dark mode by default
         }
-
-        // Show elements on scroll for fade-in effect
-        window.addEventListener('scroll', () => {
-            const fadeElements = document.querySelectorAll('.fade-in-on-scroll');
-            fadeElements.forEach(el => {
-                if (el.getBoundingClientRect().top < window.innerHeight) {
-                    el.classList.add('visible');
-                }
-            });
-        });
     </script>
 </body>
 </html>
