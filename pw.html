@@ -320,12 +320,14 @@
             color: #fff;
         }
 
-        /* Add hover effect for education section */
-        .education .image-holder {
+        /* Consolidated Hover Effect for Education and Projects */
+        .education .image-holder,
+        .projects .project-card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .education .image-holder:hover {
+        .education .image-holder:hover,
+        .projects .project-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
@@ -789,46 +791,36 @@
             darkModeToggle.checked = true;
         }
 
-        // Show elements on scroll for fade-in effect
-        window.addEventListener('scroll', () => {
+        // Consolidated Scroll Event Listener
+        function handleScrollEffects() {
             const fadeElements = document.querySelectorAll('.fade-in-on-scroll');
+            const progressBars = document.querySelectorAll('.progress-bar');
+
             fadeElements.forEach(el => {
-                if (el.getBoundingClientRect().top < window.innerHeight) {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
                     el.classList.add('visible');
+                } else {
+                    el.classList.remove('visible');
                 }
             });
-        });
 
-        // Animate progress bars on scroll
-        window.addEventListener('scroll', () => {
-            const progressBars = document.querySelectorAll('.progress-bar');
             progressBars.forEach(bar => {
                 const value = bar.getAttribute('aria-valuenow');
                 if (bar.getBoundingClientRect().top < window.innerHeight) {
                     bar.style.width = `${value}%`;
                 }
             });
-        });
+        }
+
+        window.addEventListener('scroll', handleScrollEffects);
 
         // Trigger animation on page load for visible progress bars
         document.addEventListener('DOMContentLoaded', () => {
-            const progressBars = document.querySelectorAll('.progress-bar');
-            progressBars.forEach(bar => {
-                const value = bar.getAttribute('aria-valuenow');
-                if (bar.getBoundingClientRect().top < window.innerHeight) {
-                    bar.style.width = `${value}%`;
-                }
-            });
+            handleScrollEffects();
         });
 
-        // Show elements on scroll for fade-in effect
-        window.addEventListener('scroll', () => {
-            const fadeElements = document.querySelectorAll('.fade-in-on-scroll');
-            fadeElements.forEach(el => {
-                }
-            });
-        });
-
+        // Debounce Function
         function debounce(func, wait = 20, immediate = true) {
             let timeout;
             return function () {
@@ -843,18 +835,6 @@
                 if (callNow) func.apply(context, args);
             };
         }
-
-        window.addEventListener('scroll', debounce(() => {
-            const fadeElements = document.querySelectorAll('.fade-in-on-scroll');
-            fadeElements.forEach(el => {
-                const rect = el.getBoundingClientRect();
-                if (rect.top < window.innerHeight && rect.bottom > 0) {
-                    el.classList.add('visible');
-                } else {
-                    el.classList.remove('visible');
-                }
-            });
-        }));
     </script>
 </body>
 </html>
