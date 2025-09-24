@@ -4,9 +4,6 @@
 
 A modern, responsive portfolio website showcasing my journey as a Computer Science student and aspiring Full-Stack Developer.
 
-## 🚀 Live Demo
-
-Visit the portfolio at: `http://localhost/WST_PERSONALWEBSITE/pw.html`
 
 ## ✨ Features
 
