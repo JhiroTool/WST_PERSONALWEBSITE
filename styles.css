@@ -164,28 +164,36 @@ header .navbar-nav .nav-link:hover::before {
     text-align: left;
 }
 
-.hero-grid {
+
+.hero-core {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    align-items: stretch;
-    gap: 60px;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    align-items: center;
+    gap: 50px;
 }
 
-.hero-left {
+.hero-text {
     display: flex;
     flex-direction: column;
     gap: 30px;
+    max-width: 620px;
 }
 
-.hero-right {
+.hero-visual {
     display: flex;
     justify-content: center;
 }
 
-.metrics-grid {
+.metrics-grid,
+.hero-metrics {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
+    max-width: 540px;
+}
+
+.hero-metrics {
+    margin-top: 60px;
 }
 
 .metric-card {
@@ -452,6 +460,7 @@ header .navbar-nav .nav-link:hover::before {
     margin: 0 0 60px 0;
     padding: 0;
     animation: fadeInUp 1s ease-out 1.4s both;
+    max-width: 540px;
 }
 
 .cta-buttons .btn {
@@ -834,15 +843,16 @@ header .navbar-nav .nav-link:hover::before {
         font-size: 2.8em;
     }
 
-    .hero-grid {
+    .hero-core {
         grid-template-columns: 1fr;
         gap: 40px;
     }
 
-    .hero-right {
+    .hero-visual {
         justify-content: flex-start;
     }
 
+    .hero-metrics,
     .metrics-grid {
         grid-template-columns: 1fr 1fr;
     }
@@ -873,6 +883,7 @@ header .navbar-nav .nav-link:hover::before {
         font-size: 2.2em;
     }
 
+    .hero-metrics,
     .metrics-grid {
         grid-template-columns: 1fr;
     }
