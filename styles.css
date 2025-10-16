@@ -193,7 +193,8 @@ header .navbar-nav .nav-link:hover::before {
 }
 
 .hero-metrics {
-    margin-top: 60px;
+    margin: 60px 0 0 0;
+    max-width: 900px;
 }
 
 .metric-card {
@@ -392,13 +393,12 @@ header .navbar-nav .nav-link:hover::before {
 /* Enhanced Role and Typing Animation */
 .role-container {
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 15px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
     margin-bottom: 30px;
-    font-size: 1.8em;
+    font-size: 1.6em;
     animation: fadeInUp 1s ease-out 1s both;
-    flex-wrap: wrap;
     min-height: 60px;
     width: 100%;
 }
@@ -406,13 +406,18 @@ header .navbar-nav .nav-link:hover::before {
 .role-text {
     color: rgba(255, 255, 255, 0.9);
     margin: 0;
+    font-size: 0.7em;
+    letter-spacing: 3px;
+    text-transform: uppercase;
 }
 
 .typing-container {
     position: relative;
+    display: inline-flex;
+    align-items: center;
     min-width: 0;
-    display: inline-block;
     text-align: left;
+    font-size: 0.9em;
 }
 
 #typed-text {
@@ -1853,14 +1858,26 @@ footer p {
 }
 
 .experience-card {
-    padding: 30px;
+    position: relative;
+    padding: 32px;
     border-radius: 26px;
-    background: linear-gradient(155deg, rgba(30, 64, 175, 0.25), rgba(12, 74, 110, 0.4));
-    border: 1px solid rgba(148, 163, 184, 0.3);
-    box-shadow: 0 20px 45px rgba(15, 23, 42, 0.35);
+    background: linear-gradient(160deg, rgba(59, 130, 246, 0.28), rgba(30, 64, 175, 0.22));
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    box-shadow: 0 25px 45px rgba(15, 23, 42, 0.45);
+    backdrop-filter: blur(18px);
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 22px;
+    color: rgba(226, 232, 240, 0.92);
+}
+
+.experience-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 26px;
+    background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.18), transparent 55%);
+    pointer-events: none;
 }
 
 .experience-type {
@@ -2003,7 +2020,8 @@ footer p {
 .testimonials-wrapper {
     display: flex;
     align-items: center;
-    gap: 20px;
+    justify-content: center;
+    gap: 30px;
 }
 
 .testimonial-track {
@@ -2011,6 +2029,8 @@ footer p {
     overflow: hidden;
     min-height: 220px;
     flex: 1;
+    max-width: 680px;
+    margin: 0 auto;
 }
 
 .testimonial-card {
@@ -2019,10 +2039,11 @@ footer p {
     opacity: 0;
     transform: translateX(40px);
     transition: opacity 0.4s ease, transform 0.4s ease;
-    padding: 30px;
-    border-radius: 24px;
-    background: rgba(15, 23, 42, 0.8);
+    padding: 36px;
+    border-radius: 28px;
+    background: linear-gradient(150deg, rgba(15, 23, 42, 0.88), rgba(30, 41, 59, 0.78));
     border: 1px solid rgba(148, 163, 184, 0.25);
+    box-shadow: 0 20px 45px rgba(15, 23, 42, 0.4);
 }
 
 .testimonial-card.active {
@@ -2034,7 +2055,7 @@ footer p {
     display: flex;
     align-items: center;
     gap: 15px;
-    margin-top: 20px;
+    margin-top: 24px;
 }
 
 .testimonial-meta img {
@@ -2042,6 +2063,7 @@ footer p {
     height: 55px;
     border-radius: 50%;
     object-fit: cover;
+    flex-shrink: 0;
 }
 
 .testimonial-nav {
@@ -2049,8 +2071,8 @@ footer p {
     border: 1px solid rgba(148, 163, 184, 0.3);
     color: rgba(226, 232, 240, 0.85);
     border-radius: 50%;
-    width: 44px;
-    height: 44px;
+    width: 48px;
+    height: 48px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -2065,7 +2087,7 @@ footer p {
     margin-top: 25px;
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 12px;
 }
 
 .testimonial-dot {
