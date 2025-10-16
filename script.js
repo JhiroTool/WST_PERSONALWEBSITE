@@ -304,36 +304,181 @@ document.addEventListener('DOMContentLoaded', () => {
     // New landing page functionality
     // Start typing animation
     setTimeout(typeRole, 1000);
-    
-    // Animate counters when they come into view
-    const observer = new IntersectionObserver((entries) => {
+
+    // Animate counters when hero metrics come into view
+    const counterObserver = new IntersectionObserver((entries, obs) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting && entry.target.classList.contains('social-preview')) {
+            if (entry.isIntersecting) {
                 animateCounters();
-                observer.unobserve(entry.target);
+                obs.disconnect();
             }
         });
-    }, {
-        threshold: 0.5 // Trigger when 50% of the element is visible
-    });
-    
-    const socialPreview = document.querySelector('.social-preview');
-    if (socialPreview) {
-        observer.observe(socialPreview);
-    } else {
-        // If section not found, animate immediately
-        setTimeout(() => {
-            animateCounters();
-        }, 2000);
+    }, { threshold: 0.4 });
+
+    const metricsTarget = document.querySelector('.metrics-grid');
+    if (metricsTarget) {
+        counterObserver.observe(metricsTarget);
     }
-    
+
     // Start particle effects
     createParticles();
     createCodeRain();
-    
+
     // Setup smooth scrolling
     setupSmoothScroll();
-    
+
     // Initialize active nav
     updateActiveNavLink();
+
+    // Initialize interests filter
+    setupInterestFilters();
+
+    // Initialize quote carousel
+    setupQuoteCarousel();
+
+    // Initialize project slider
+    setupProjectSlider();
+
+    // Initialize testimonials slider
+    setupTestimonials();
 });
+
+// Interest filters logic
+function setupInterestFilters() {
+    const filterButtons = document.querySelectorAll('.filter-pill');
+    const cards = document.querySelectorAll('.interest-card');
+
+    if (!filterButtons.length || !cards.length) return;
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const filter = button.getAttribute('data-filter');
+
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            cards.forEach(card => {
+                const category = card.getAttribute('data-category');
+                if (filter === 'all' || category === filter) {
+                    card.classList.remove('is-hidden');
+                } else {
+                    card.classList.add('is-hidden');
+                }
+            });
+        });
+    });
+}
+
+// Quote carousel logic
+function setupQuoteCarousel() {
+    const slides = document.querySelectorAll('.quote-slide');
+    const dots = document.querySelectorAll('.quote-dot');
+
+    if (!slides.length || !dots.length) return;
+
+    let activeIndex = 0;
+
+    const setActiveSlide = (index) => {
+        slides.forEach((slide, idx) => {
+            slide.classList.toggle('active', idx === index);
+        });
+        dots.forEach((dot, idx) => {
+            dot.classList.toggle('active', idx === index);
+        });
+        activeIndex = index;
+    };
+
+    dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+            const index = parseInt(dot.getAttribute('data-slide') || dot.getAttribute('data-index'), 10);
+            if (!Number.isNaN(index)) {
+                setActiveSlide(index);
+            }
+        });
+    });
+
+    // Auto-rotate every 8 seconds
+    setInterval(() => {
+        const nextIndex = (activeIndex + 1) % slides.length;
+        setActiveSlide(nextIndex);
+    }, 8000);
+}
+
+// Project slider logic
+function setupProjectSlider() {
+    const slides = document.querySelectorAll('.project-slide');
+    const dots = document.querySelectorAll('.slider-dot');
+
+    if (!slides.length || !dots.length) return;
+
+    const setSlide = (index) => {
+        slides.forEach((slide, idx) => slide.classList.toggle('active', idx === index));
+        dots.forEach((dot, idx) => dot.classList.toggle('active', idx === index));
+    };
+
+    dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+            const index = parseInt(dot.getAttribute('data-slide'), 10);
+            if (!Number.isNaN(index)) {
+                setSlide(index);
+            }
+        });
+    });
+
+    // Keyboard accessibility
+    const showcase = document.querySelector('.project-showcase');
+    if (showcase) {
+        showcase.setAttribute('tabindex', '0');
+        showcase.addEventListener('keydown', (event) => {
+            const activeIndex = Array.from(slides).findIndex(slide => slide.classList.contains('active'));
+            if (event.key === 'ArrowRight') {
+                const next = (activeIndex + 1) % slides.length;
+                setSlide(next);
+            }
+            if (event.key === 'ArrowLeft') {
+                const prev = (activeIndex - 1 + slides.length) % slides.length;
+                setSlide(prev);
+            }
+        });
+    }
+}
+
+// Testimonials slider logic
+function setupTestimonials() {
+    const cards = document.querySelectorAll('.testimonial-card');
+    const dots = document.querySelectorAll('.testimonial-dot');
+    const prevBtn = document.querySelector('.testimonial-nav.prev');
+    const nextBtn = document.querySelector('.testimonial-nav.next');
+
+    if (!cards.length || !dots.length) return;
+
+    let current = 0;
+
+    const setCard = (index) => {
+        cards.forEach((card, idx) => card.classList.toggle('active', idx === index));
+        dots.forEach((dot, idx) => dot.classList.toggle('active', idx === index));
+        current = index;
+    };
+
+    const goToNext = () => setCard((current + 1) % cards.length);
+    const goToPrev = () => setCard((current - 1 + cards.length) % cards.length);
+
+    dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+            const index = parseInt(dot.getAttribute('data-index'), 10);
+            if (!Number.isNaN(index)) {
+                setCard(index);
+            }
+        });
+    });
+
+    if (nextBtn) {
+        nextBtn.addEventListener('click', goToNext);
+    }
+
+    if (prevBtn) {
+        prevBtn.addEventListener('click', goToPrev);
+    }
+
+    setInterval(goToNext, 9000);
+}
